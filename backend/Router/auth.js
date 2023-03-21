@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 require('../db/conn');   
 const User = require('../model/userSchema');
@@ -14,44 +15,6 @@ const UserSignUp = require('../model/signupSchema');
 //     // console.log('authjs')
 // });
 
-//SignUpPage Route
-router.post('/signup', async (req, res) => {
-    try {
-        console.log(req.body);
-        const { user_name, user_email, user_password, user_ConfirmPassword} = req.body;
-
-        if(!user_name || !user_email || !user_password || !user_ConfirmPassword) {
-            res.status(422).json({ err: "Please fill all the fields"});
-        }
-
-        const signupUserExist = await UserSignUp.findOne({ user_name: user_name || {user_email: user_email}});
-
-        if(signupUserExist) {
-            res.status(422).json({message: "user already exist please login"});
-        }else {
-            const newSignupUser = new UserSignUp({
-                user_name, user_email, user_password, user_ConfirmPassword
-            });
-            console.log("Created a new user");
-            console.log(newSignupUser);
-            const profile = await newSignupUser.save();
-
-            if(profile) {
-                console.log("Inside signup profile");
-                return res.status(201).json({ message: "signup successfully" });
-                
-            } else {
-                console.log("Inside else signup block");
-                return res.status(500).json({err: "faild to signup a profile"})
-                
-        }
-        }
-
-    }catch (error) {
-        console.log(error);
-    }
-});
-
 // LoginPage Route
 router.get("/login", (req, res) => {
     res.send({message: req.body});
@@ -60,25 +23,39 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
     //new
     try {
-        const { user_email, user_password, user_ConfirmPassword } = req.body;
+        console.log(req.body);
+        const { user_name, user_email, user_password, user_ConfirmPassword} = req.body;
 
-            if( !user_email || !user_password || !user_ConfirmPassword) {
-                return res.status(400).json({ message: "Please fill all the field"})
-            }
+        if(!user_name || !user_email || !user_password || !user_ConfirmPassword) {
+            res.status(422).json({ err: "Please fill all the fields"});
+        }
 
-            const userAlreadyExist = await UserSignUp.findOne({ user_email: user_email});
+        const loginUserExist = await UserLogin.findOne({ user_email: user_email });
 
-            const isMatch = await (user_password == user_ConfirmPassword);
+        if(loginUserExist) {
+            res.status(422).json({message: "user already exist please Signup"});
+        }else {
+            const newLoginUser = new UserLogin({
+                user_name, user_email, user_password, user_ConfirmPassword
+            });
+            console.log("Created a new user");
+            console.log(newLoginUser);
+            const profile = await newLoginUser.save();
 
-            if(!isMatch) {
-                res.status(422).json({ error: "password does not match, please signup"});
-            }else {
-                res.status(200).json({message: "login successfully"})
-            }
-    }catch (err){
-        console.log(err);
+            if(profile) {
+                console.log("Inside signup profile");
+                return res.status(201).json({ message: "Login successfully" });
+                
+            } else {
+                console.log("Inside else login block");
+                return res.status(500).json({err: "faild to login a profile"})
+                
+        }
+        }
+
+    }catch (error) {
+        console.log(error);
     }
-
 
 
     // old code
@@ -115,6 +92,46 @@ router.post("/login", async (req, res) => {
         // }catch (err) {
         //     console.log(err);
         // }
+});
+
+
+
+//SignUpPage Route
+router.post('/signup', async (req, res) => {
+    try {
+        const { user_email, user_password } = req.body;
+
+            if( !user_email || !user_password ) {
+                return res.status(400).json({ message: "Please fill all the field"})
+            }
+
+            const userMail = await UserLogin.findOne({ user_email: user_email });
+            console.log(userMail);
+
+            if(userMail) {
+                const checkPassword = await bcrypt.compare(user_password, userMail  .user_password);
+
+                 const token = await userMail.generateAuthToken();
+                 console.log(token);
+
+                 res.cookie('jwtoken', token, {
+                    expires: new Date(Date.now() 
+                    + 23892000000),
+                    httpOnly: true
+                 });
+
+                if(!checkPassword) {
+                    res.send("Wrong username or password ");
+                }else {
+                    res.send("Authentication Successfully");
+                }
+            }else {
+                res.send("wrong username or pass");
+            }
+    }catch (err){
+        console.log(err);
+        res.status(500).send("Internal Server error Occured");
+    }   
 });
 
 
