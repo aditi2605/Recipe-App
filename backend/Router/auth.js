@@ -97,40 +97,65 @@ router.post("/login", async (req, res) => {
 
 
 //SignUpPage Route
-router.post('/signup', async (req, res) => {
+router.get('./signup', (req, res) => {
+    res.send({message: req.body})
+})
+router.post('/signup', async (req, res, next) => {
     try {
+        // Get user input
         const { user_email, user_password } = req.body;
-
+            // Validate user input
             if( !user_email || !user_password ) {
                 return res.status(400).json({ message: "Please fill all the field"})
             }
-
-            const userMail = await UserLogin.findOne({ user_email: user_email });
+            // Validate if user exist in our database
+            const userMail = await UserLogin.findOne({ user_email });
             console.log(userMail);
 
-            if(userMail) {
-                const checkPassword = await bcrypt.compare(user_password, userMail  .user_password);
+            if(userMail && (await bcrypt.compare(user_password, userMail.user_password))) {
 
-                 const token = await userMail.generateAuthToken();
-                 console.log(token);
+                // Create token  
+                const token = jwt.sign(
+                    { _id: userMail._id },
+                    process.env.TOKEN_KEY,
+                    {
+                    expiresIn: "2h"
+                    }
+                );
 
-                 res.cookie('jwtoken', token, {
-                    expires: new Date(Date.now() 
-                    + 23892000000),
-                    httpOnly: true
-                 });
-
-                if(!checkPassword) {
-                    res.send("Wrong username or password ");
-                }else {
-                    res.send("Authentication Successfully");
+                // save user token
+                userMail.token = token;
+                
+                // user
+                res.status(200).json(userMail);
                 }
-            }else {
-                res.send("wrong username or pass");
-            }
+
+                res.status(400).send("Invalid Credentials");
+
+
+
+                // const checkPassword = await bcrypt.compare(user_password, UserLogin.user_ConfirmPassword);
+        
+                //  const token = await userMail.generateAuthToken();
+                //  console.log(token);
+
+                //  res.cookie('jwtoken', token, {
+                //     expires: new Date(Date.now() 
+                //     + 23892000000),
+                //     httpOnly: true
+                //  });
+
+                // if(checkPassword) {
+                //     res.status(200).json({message: "Authentication Successfully"});
+                // }else {
+                //     res.status(422).json({error: "Wrong username or password "});
+                // }
+            // }else {
+            //     res.send("invalid username");
+            // }
     }catch (err){
         console.log(err);
-        res.status(500).send("Internal Server error Occured");
+        res.status(500).json({err: "Internal Server error Occured"});
     }   
 });
 

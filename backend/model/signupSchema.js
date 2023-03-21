@@ -12,7 +12,6 @@ const userSignUpSchema = new mongoose.Schema({
     
 });
 
-
 const UserSignUp = mongoose.model('USERSIGNUP', userSignUpSchema);
 
 module.exports = UserSignUp;
