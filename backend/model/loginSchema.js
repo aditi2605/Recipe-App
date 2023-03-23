@@ -42,9 +42,11 @@ userLoginSchema.pre('save', async function ( next ) {
 //create token
 userLoginSchema.methods.generateAuthToken =  async function () {
     try {
-        const token = jwt.sign({ _id: this_id }, process.env.SECRET_KEY);
-        this.jwt_tokens = this.jwt_tokens.concat({ token });
-        await this.jwt_token.save();
+        const token = jwt.sign({ _id: _id}, process.env.TOKEN_KEY);
+        console.log(token);
+        this.jwt_tokens = this.jwt_tokens.concat({ token: token });
+        await this.jwt_tokens.save();
+        console.log(token);
         return token;
     }catch (err) {
         console.log(err)

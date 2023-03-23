@@ -14,14 +14,18 @@ app.use(express.json());
 // import routerfile auth.js to get the DB
 app.use(require('./router/auth'))
 
-// app.get('/', (req, res) => {
-//     res.send('Hello world')
-// })
+app.get('/', (req, res) => {
+    res.send('Hello world')
+})
 
-// app.post('/createrecipe', (req, res) => {
-//     console.log(req.body);
-//     res.json({message: req.body});
-// })
+app.get("/signup", (req, res) => {
+    res.cookie("test", "codeGirl");
+})
+
+app.post('/createrecipe', (req, res) => {
+    console.log(req.body);
+    res.json({message: req.body});
+})
 
 
 

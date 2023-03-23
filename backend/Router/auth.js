@@ -97,8 +97,8 @@ router.post("/login", async (req, res) => {
 
 
 //SignUpPage Route
-router.get('./signup', (req, res) => {
-    res.send({message: req.body})
+router.get('/signup', (req, res) => {
+    res.send({message: "signup page"})
 })
 router.post('/signup', async (req, res, next) => {
     try {
@@ -127,10 +127,10 @@ router.post('/signup', async (req, res, next) => {
                 userMail.token = token;
                 
                 // user
-                res.status(200).json(userMail);
+                return res.status(200).json(userMail);
                 }
 
-                res.status(400).send("Invalid Credentials");
+                return res.status(400).send("Invalid Credentials");
 
 
 
