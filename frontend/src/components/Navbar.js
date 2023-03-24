@@ -7,8 +7,11 @@ function Navbar() {
   return (
     <>
     <nav className="navbar">
-      <div className="logo"><i className="fa-solid fa-user-chef"></i></div>
-      <ul className="nav-links">
+      <div className="nav">
+        <h1 className='logo'>®️ecipes</h1>
+      </div>
+      <div className='nav-links'>
+      <ul>
          <label className="hamburger">&#9776;</label>
             <div className="menu">
               <li><a href="/">Home</a></li>
@@ -24,6 +27,8 @@ function Navbar() {
               <li><a href="/">Contact</a></li>
             </div>
      </ul>
+     </div>
+     <div className='fancyCorner'></div>
  </nav>
 </>
 )

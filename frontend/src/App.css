@@ -9,6 +9,8 @@
   body {
     /* font-family: 'Delicious Handrawn', cursive; */
     font-family: 'Roboto', sans-serif;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   
   a {
@@ -24,10 +26,9 @@
 .navbar {
     display: flex;
     padding: 20px;
-    background-color: rgb(23, 110, 63); 
     align-items: center;
-    justify-content: space-between;
-    color:#fff;
+    color:rgb(158, 178, 59);
+    margin-top: 10px;
   }
 
   
@@ -39,7 +40,8 @@
   } */
 
   .nav-links a {
-      color: #fff;
+     color:black;
+     
     }
     
     /* LOGO */
@@ -53,21 +55,23 @@
 .menu {
     display: flex;
     font-size: 22px;
+    margin-left: 320px;
     
   }
   
-  .menu li:hover {
-    text-decoration: underline;
-    transition: 0.2s ease;
-  }
-  
-  
   .menu li {
+    color: rgb(97, 249, 97);;
     font-family: 'Delicious Handrawn', cursive;
     font-size: 1.4rem;
-    padding: 5px 14px;
+    padding: 5px 20px;
     align-items: center;
     justify-content: center;
+  }
+
+  .menu li:hover {
+    text-decoration: underline;
+    font-size: 1.6rem;
+    transition: 0.4s ease;
   }
   
   /* DROPDOWN MENU */
@@ -157,29 +161,26 @@
   }
   
   .dropdown li:hover {
-    background-color: #4c9e9e;
+    background-color: rgb(97, 249, 97);;
   }
   
   }
 
   /* HomePage */
-  .heading {
-    display: inline;
-    flex-direction: column;
-    flex: 50%;
-    margin-left: 50px;
-    margin-top: 200px;
-  }
   .mainPage {
-    
     display: flex;
     flex: 50%;
   }
-
+  .heading {
+    display: inline;
+    margin-left: 50px;
+    margin-top: 200px;
+  }
+  
   .heroHeading {
     font-family: 'Delicious Handrawn', cursive;
-    color: green;
-    margin-bottom:20px;
+    color: rgb(158, 178, 59);
+    margin-bottom:5px;
     font-size: 2.5em;
     /* text-decoration: underline; */
   }
@@ -188,6 +189,7 @@
    line-height: 1.5;
    /* align-items: center; */
    text-align: justify;
+   margin-right: 15%;
 
   }
   
@@ -197,7 +199,7 @@
   }
   .heroimg {
     border-radius: 20px;
-    margin: 100px 15px 20px 100px; 
+    margin: 100px 20px 20px 50px; 
     border-radius: 74% 26% 23% 77% / 62% 76% 24% 38%;
     /* border: 1px solid green; */
   }
@@ -206,7 +208,7 @@
     font-size: 1.1rem;
     font-weight: 300;
     margin-top: 30px;
-    border: 2px solid green;
+    border: 2px solid rgb(158, 178, 59);
     border-radius: 25px;
     height: 50px;
     width: 200px;
@@ -214,11 +216,324 @@
   }
 
   .explorbtn:hover{
-    border: 4px solid green;
+    border: 4px solid rgb(158, 178, 59);
     transition: 0.3s ease-in-out;
     font-size: 1.2rem;
   }
-    
+
+  /* .fancyCorner {
+    display: flex;
+    background-color: rgb(158, 178, 59);
+    border-radius: 74% 26% 23% 77% / 62% 76% 24% 38%;
+    height: 450px;
+    width: 600px;
+    padding-left: 30px;
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    z-index: -1;
+    animation: fancyCorner 200s infinite;
+    margin-right: 20%;
+    margin-left: 20%;
+  }
+  
+  @keyframes fancyCorner {
+    50% {transform: rotate(360deg)};
+  } */
+
+  /* Aboutus */
+  .about {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+
+  .aboutUs {
+    color: rgb(158, 178, 59);
+    margin-top: 80px;
+    margin-bottom: 2px;
+  }
+
+  .aboutPage {
+    display: flex;
+    flex: 50%;
+    margin-top: 20px;
+  }
+  .aboutheading {
+    display: inline;
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+  
+  .heroaboutHeading {
+    font-family: 'Delicious Handrawn', cursive;
+    color: rgb(158, 178, 59);
+    margin-bottom:5px;
+    font-size: 2.5em;
+    margin-top: 70px;
+    /* text-decoration: underline; */
+  }
+  .aboutPara {
+   display: flex;
+   flex: 50%;
+   font-size: 1.2rem;
+   line-height: 1.5;
+   align-items: flex-start;
+   text-align:justify;
+   margin-right: 15%;
+   margin-top: 10px;
+
+
+  }
+  
+  .aboutImg {
+    /* margin-top: 20px; */
+    flex: 50%;
+    /* margin: 100px 20px 20px 130px; */ 
+  }
+  .aboutimg {
+    border-radius: 20px;
+    margin: 100px 50px 20px 100px; 
+    border-radius: 74% 26% 23% 77% / 62% 76% 24% 38%;
+    /* border: 1px solid green; */
+  }
+
+/* Tranding Recipes */
+
+.tranding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+  color: rgb(158, 178, 59);
+}
+
+.containerOne {
+  margin-top: 80px;
+}
+
+.containerTwo {
+  margin-top: 50px;
+}
+
+.containerOne, .containerTwo {
+ 
+  display:flex;
+  flex-direction:row;
+}
+
+@media screen and (max-width: 800px) {
+  .containerOne, .containerTwo {
+    flex-direction: column;
+  }
+}
+
+#titleImg {
+  height:300px;
+  width:300px;
+/*   position:relative; */
+align-items: center;
+justify-content: center;
+margin-left: 60px;
+  
+}
+
+.img1, .img2, .img3, .img4, .img5, .img6, .img7 {
+  width: 50px;
+  height: 15px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+}
+  
+#container1, #container2, #container3, #container4, #container5, #container6, #container7{
+  background-color:white;
+  flex:1;
+  position:relative;
+  flex-direction: row;
+  /* border:1px solid black; */
+  margin:5px;
+  box-shadow: #000;
+  
+}
+.trandingSection {
+  border-radius: 30px; 
+  border: 1px solid green;
+  box-shadow: 5px 5px 5px 5px gray;
+  margin: 0px 5px 5px 5px;
+
+}
+
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media screen and (max-width: 800px) {
+  #container1, #container2, #container3, #container4, #container5, #container6, #container7 {
+    flex-direction: column;
+  }
+}
+
+/* Text-Block over image */
+
+ 
+.containerheading {
+  color: rgb(158, 178, 59);
+  display: flex;
+  position:relative;
+  /* margin-left:15px; */
+  align-content: center;
+  justify-content:center;
+  margin-top: 15px;
+}
+ 
+
+p {
+  display:flex;
+  flex-direction:row;
+  padding: 15px;
+  margin:2px;
+  text-align: left;
+  bottom:10px;
+}
+
+
+
+.centerBtn {
+  position:relative;
+  align-content: center;
+  justify-content:center;
+  margin-left:150px;
+  
+  
+  }
+
+.seemorebtn {
+  height:50px;
+  width:120px;
+  color: rgb(158, 178, 59);
+  border-radius:50px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 2px 2px gray;
+  border: 2px solid green;
+  background-color: white;
+  
+}
+
+  @media screen and (max-width: 800px) {
+ .centerBtn{
+    flex-direction: column;
+  }
+}
+
+/* Testimony Carousel */
+
+.carouselbackground {
+  background-image:url("./images/foodwallpaper.jpg");
+  height: 450px;
+  width: 1350px;
+  position: absolute;
+  margin-top: 100px;
+  margin-bottom: 130px;
+}
+.carousel {
+  width: 800px;
+  margin-top: 100px;
+  margin-left: 280px;
+  background-color: #087f5b;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 86px;
+}
+
+.testimonial-img {
+  width: 200px;
+  border-radius: 8px;
+  transform: scale(1.7);
+  box-shadow: 0 15px 24px rgba(0, 0, 0, 0.25);
+  
+}
+
+.testimonial-text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  color: #fff;
+}
+
+.testimonial-author {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #c3fae8;
+}
+
+.testimonial-job {
+  font-size: 12px;
+  color: #c3fae8;
+}
+
+.btn {
+  background-color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  stroke: #087f5b;
+}
+
+.btn-left {
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-right {
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 32px);
+  display: flex;
+  gap: 12px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #fff;
+  border: 2px solid #087f5b;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot-filled {
+  background-color: #087f5b;
+}
+
+
+
+
 
   /* Recipe Page */
 .search-form {
@@ -279,6 +594,8 @@ li {
   list-style: none;
   padding: 2px;
 }
+
+
 
 
 /* Footer */

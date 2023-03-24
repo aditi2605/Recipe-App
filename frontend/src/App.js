@@ -6,7 +6,9 @@ import './App.css';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
-
+import AboutPage from './pages/AboutPage';
+import TrandingRecipes from './components/TrandingRecipes';
+import Carousel from './components/Carousel';
 
 
 function App() {
@@ -48,6 +50,9 @@ function App() {
     <div className="App">
       <Navbar />
       <HomePage />
+      <AboutPage />
+      <TrandingRecipes />
+      <Carousel />
       <Footer />  
 {/*       
       <form onSubmit={getSearch} className='searchForm'>
