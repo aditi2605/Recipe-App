@@ -11,13 +11,13 @@ import sushi from '../images/sushi.jpg';
 function TrandingRecipes() {
   return (
    <>
-   <h1 className='tranding'>Our Tranding Recipes </h1>
+   <h1 className='tranding'>Our Trending Recipes </h1>
     {/* <!--container 1--> */}
 <div className="containerOne">
 <div id="container1">
     <img id="titleImg" className="img1" src={biscuits} alt=" Snow Capped Mountains,Norway"/>
     <div className='trandingSection'>
-    <h1 className="containerheading">Homemade Outs Biscuits</h1>
+    <h1 className="containerheading">Homemade Oats Biscuits</h1>
     <p className="para">
     look a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
   <div className="centerBtn">
@@ -42,7 +42,7 @@ function TrandingRecipes() {
 <div id="container3">
  <img id="titleImg" className="img1" src={pitahammus} alt=" Snow Capped Mountains,Norway" />
  <div className='trandingSection'>
-  <h1 className="containerheading">Pita Breade & Hammus</h1>
+  <h1 className="containerheading">Pita Bread & Hummus</h1>
   
   
   <p className="para">look a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
@@ -96,7 +96,7 @@ function TrandingRecipes() {
 <div id="container7">
   <img id="titleImg" className="img7" src={pizza} alt=" Snow Capped Mountains,Norway" />
   <div className='trandingSection'>
-  <h1 className="containerheading">Mistry Pizza</h1>
+  <h1 className="containerheading">Pizza</h1>
   
   
   <p className="para">look a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>

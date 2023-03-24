@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import AboutPage from './pages/AboutPage';
-import TrandingRecipes from './components/TrandingRecipes';
+import TrendingRecipes from './components/TrendingRecipes';
 import Carousel from './components/Carousel';
 
 
@@ -51,7 +51,7 @@ function App() {
       <Navbar />
       <HomePage />
       <AboutPage />
-      <TrandingRecipes />
+      <TrendingRecipes />
       <Carousel />
       <Footer />  
 {/*       
