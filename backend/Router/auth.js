@@ -15,12 +15,12 @@ const UserSignUp = require('../model/signupSchema');
 //     // console.log('authjs')
 // });
 
-// SignupPage Route
-router.get("/signup", (req, res) => {
+// LoginPage Route
+router.get("/login", (req, res) => {
     res.send({message: req.body});
-    console.log('signpupage')
+    console.log('loginage')
 })
-router.post("/signup", async (req, res) => {
+router.post("/login", async (req, res) => {
     //new
     try {
         console.log(req.body);
@@ -96,11 +96,11 @@ router.post("/signup", async (req, res) => {
 
 
 
-//LoginPage Route
-router.get('/login', (req, res) => {
+//SignupPage Route
+router.get('/signup', (req, res) => {
     res.send({message: "signup page"})
 })
-router.post('/login', async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
     try {
         // Get user input
         const { user_email, user_password } = req.body;
