@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 function Signup() {
+  
   return (
         <>
             <form action="" method='POST'>
@@ -10,13 +11,13 @@ function Signup() {
                   <hr />
 
                   <label for="email"><b>Email</b></label>
-                  <input type="text" pattern=".+@globex\.com" placeholder="Enter Email" name="email" id="email" required />
+                  <input type="text" pattern=".+@globex\.com" placeholder="Enter Email" name="email" id="email"  required />
 
                   <label for="psw"><b>Password (8 characters minimum)</b></label>
                   <input type="password" placeholder="Enter Password" name="psw" id="psw"  minlength="8" required />
 
                   <label for="psw-repeat"><b>Confirm Password</b></label>
-                  <input type="password" placeholder="Confirm Password" name="psw-confirm" id="psw-confirm" required />
+                  <input type="password" placeholder="Confirm Password" name="pswConfirm" id="pswConfirm"  required />
                   <hr className='dividerLine' />
                   <p>By creating an account you agree to our <NavLink to="#">Terms & Privacy</NavLink>.</p>
 

@@ -39,8 +39,19 @@ function RecipePage() {
   };
   return (
     <>
+
+          <div className="textAnimationContainer">
+              <p className='txtanihead'>Discover 🧑🏻‍🍳</p>
+              <section className="animation">
+                <div className="first"><div className='aniOne'>Your Inner Gourmand.</div></div>
+                <div className="second"><div className='aniTwo'>The Secret of Good Cooking.</div></div>
+                <div className="third"><div className='aniThree'>The Most Exquisite Flavors.</div></div>
+                {/* <div className="fourth"><div className='anifour'>The Art Of Cooking.</div></div> */}
+              </section>
+          </div>
+        {/* recipe search section */}
         <form onSubmit={getSearch} className='searchForm'>
-            <input className='search-bar' type='text' value={search} onChange={updateSearch} placeholder="Search.." />
+            <input className='search-bar' type='text' value={search} onChange={updateSearch}/>
             <button className='search-button' type='submit'>Search</button>
         </form>
           {recipe.map(recipe => (
@@ -50,27 +61,21 @@ function RecipePage() {
             ingredients={recipe.recipe.ingredients} 
             />
           ))}
-    <hr />
-      
-
-
-
-
-
+  
 
 
         {/* <div>
-        <div className='about'>
-        <h1 className='aboutUs'> About Us</h1>
+        <div classNameName='about'>
+        <h1 classNameName='aboutUs'> About Us</h1>
         </div>   
-            <div className='aboutPage'>
-                    <div className='aboutImg'>
-                        <img className='aboutimg' src={aboutus} alt='foodimg' height= '400px' width= '550px'  />
+            <div classNameName='aboutPage'>
+                    <div classNameName='aboutImg'>
+                        <img classNameName='aboutimg' src={aboutus} alt='foodimg' height= '400px' width= '550px'  />
                     </div>
-                    <div className='aboutheading'>
-                        <h1 className='heroaboutHeading'>Who we are, what we do?!</h1>
-                        <p className='aboutPara'>Recipes provide consistency in the production of menu items. Recipes provide food cost control. Recipes provide knowledge for front of the house staff as a sales tool and to help consumers with dietary concerns and allergies.</p>
-                        <button className='explorbtn'>Start exploring</button>
+                    <div classNameName='aboutheading'>
+                        <h1 classNameName='heroaboutHeading'>Who we are, what we do?!</h1>
+                        <p classNameName='aboutPara'>Recipes provide consistency in the production of menu items. Recipes provide food cost control. Recipes provide knowledge for front of the house staff as a sales tool and to help consumers with dietary concerns and allergies.</p>
+                        <button classNameName='explorbtn'>Start exploring</button>
                     </div>
             </div>
             </div> */}

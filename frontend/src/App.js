@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar.js';
 import HomePage from './pages/HomePage';
 import RecipePage from './pages/RecipePage';
-import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
+import SignupPage from './pages/SignUpPage';
+import AddNewRecipePage from './pages/AddNewRecipePage';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />}/>
           <Route path="/recipes" element={<RecipePage/>}/>
-          <Route path="/contact" element={<ContactPage />}/>
+          <Route path="/addnewrecipe" element={<AddNewRecipePage />}/>
           <Route path="/login" element={<LoginPage />}/>
           <Route path="/signup" element={<SignupPage />}/> 
         </Routes>
