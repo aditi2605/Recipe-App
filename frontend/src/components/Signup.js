@@ -1,18 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-function Login() {
+function Signup() {
   return (
-    <>
-        <form action="" method='POST'>
-               <div className="loginForm">
-                  <h1 className='formHeading'>Register</h1>
-                  <p className='formAlert'>Please Fill In This Form to Create an Account.</p>
+        <>
+            <form action="" method='POST'>
+               <div className="signupForm">
+                  <h1 className='formHeading'>SignUp</h1>
                   <hr />
-
-                  <label for="Username"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Your Name" name="name" id="userName" required />
-
 
                   <label for="email"><b>Email</b></label>
                   <input type="text" pattern=".+@globex\.com" placeholder="Enter Email" name="email" id="email" required />
@@ -25,15 +20,15 @@ function Login() {
                   <hr className='dividerLine' />
                   <p>By creating an account you agree to our <NavLink to="#">Terms & Privacy</NavLink>.</p>
 
-                  <button type="submit" className="registerbtn">Register</button>
+                  <button type="submit" className="signupbtn">Sign up</button>
             </div>
             
-            <div className="container signin">
-              <p>Already have an account? <NavLink to="/signin">Sign in</NavLink></p>
+            <div className="container login">
+              <p>Don’t have an account? <NavLink to="/login">Log in</NavLink></p>
             </div>
         </form>
-    </>
+        </>
   )
 }
 
-export default Login
+export default Signup

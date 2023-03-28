@@ -1,37 +1,42 @@
 import React from 'react';
+import { useState } from 'react';
+import {ReactComponent as Brand} from '../images/logo.svg';
+import { NavLink } from 'react-router-dom';
+import { ReactComponent as Hamburger }from '../images/Hamburger.svg';
 
 
 
 
 function Navbar() {
+ 
+    const [showNavbar, setShowNavbar] = useState(false);
+  
+    const handleShowNavbar = () => {
+      setShowNavbar(!showNavbar)
+
+    }
   return (
-    <>
-    <nav className="navbar">
-      <div className="nav">
-        <h1 className='logo'>®️ecipes</h1>
-      </div>
-      <div className='nav-links'>
-      <ul>
-         <label className="hamburger">&#9776;</label>
-            <div className="menu">
-              <li><a href="/">Home</a></li>
-              <li><a href="/">About</a></li>
-              <li className="services"><a href="/">Recipes</a>
-                <ul className="dropdown">
-                  <li><a href="/">Salad </a></li>
-                  <li><a href="/">Gravy</a></li>
-                  <li><a href="/">High Protine</a></li>
-                  <li><a href="/">Sweet</a></li>
-                </ul>
-              </li>
-              <li><a href="/">Contact</a></li>
+      <>
+        <nav className='navbar'>
+          <div className="container">
+            <div className='logo'>
+              <Brand />
             </div>
-     </ul>
-     </div>
-     <div className='fancyCorner'></div>
- </nav>
-</>
-)
+            <div className='menu-icon' onClick={ handleShowNavbar }> <Hamburger/ ></div>
+            <div className={`nav-elements ${showNavbar && 'active'}`}>
+              <ul>
+                <li><NavLink to='/'>Home</NavLink></li>
+                <li><NavLink to='/recipes'>Recipes</NavLink></li>
+                <li><NavLink to='/contact'>Contact</NavLink></li>
+                <li><NavLink to='/signup'>Signup</NavLink></li>
+                <li><NavLink to='/Login'>Login</NavLink></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    
+      </>
+  )
 }
 
 export default Navbar

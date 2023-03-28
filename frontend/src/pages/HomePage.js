@@ -13,7 +13,7 @@ function HomePage() {
         <button className='explorbtn'>Start exploring</button>
       </div>
       <div className='headingImg'>
-        <img className='heroimg' src={foodbowl} alt='foodimg' height= '400px' width= '550px'  />
+        <img className='heroimg' src={foodbowl} alt='foodimg' height= '300vh' width= '300vw'  />
       </div>
       
       </div>
