@@ -33,7 +33,10 @@ function Login() {
       method: 'POST',
       headers: {
         "content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:8080/login",
+        // "Access-Control-Allow-Origin": "http://localhost:8080/login",
+        "onProxyRes": function (proxyRes, req, res) {
+          proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+       }
       },
       body:JSON.stringify({
         user_name, user_email, user_password, user_ConfirmPassword
