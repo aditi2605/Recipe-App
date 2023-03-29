@@ -1,13 +1,10 @@
 import React from 'react'
-
 // import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 function Login() {
-
-  const cors = require('cors');
 
   const navigate = useNavigate();
   
@@ -33,17 +30,14 @@ function Login() {
       method: 'POST',
       headers: {
         "content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://localhost:8080/login",
-        "onProxyRes": function (proxyRes, req, res) {
-          proxyRes.headers['Access-Control-Allow-Origin'] = '*';
-       }
+        "Access-Control-Allow-Origin": "*",
       },
       body:JSON.stringify({
         user_name, user_email, user_password, user_ConfirmPassword
       })
     });
 
-    const data = await res.json();
+    const data =  res.json();
     console.log(res);
 
     if(res.status === 422 || !data) {
@@ -55,7 +49,7 @@ function Login() {
       navigate('./signin')
     }
 
-
+  }
 
 
 //     const res = axios.post("/login", {
@@ -76,7 +70,8 @@ function Login() {
 //         window.alert("Login Successfull");
 //         console.log("Login Successfull");
 //       }
-  }
+
+  
 
      
 

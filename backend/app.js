@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 require('dotenv/config');
 const PORT = process.env.PORT;
@@ -6,6 +7,9 @@ const PORT = process.env.PORT;
 require('./db/conn');
 // import userschema
 const User = require('./model/userSchema');
+
+// cors
+app.use(cors());
 
 
 // collect the data into json formar

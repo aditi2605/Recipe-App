@@ -27,7 +27,7 @@ function Navbar() {
               <ul>
                 <li><NavLink to='/'>Home</NavLink></li>
                 <li><NavLink to='/recipes'>Recipes</NavLink></li>
-                <li><NavLink to='/addnewrecipe'>+ New Recipe</NavLink></li>
+                <li><NavLink to='/createrecipe'>+ New Recipe</NavLink></li>
                 <li><NavLink to='/signup'>Signup</NavLink></li>
                 <li><NavLink to='/login'>Login</NavLink></li>
               </ul>

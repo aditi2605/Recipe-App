@@ -172,39 +172,37 @@ router.get('/createrecipe', (req, res) => {
 router.post('/createrecipe', async (req, res) => {
    
     try {
-        const { user_name, recipe_title, recipe_image, recipe_ingridients } = req.body;
+        const { user_name,user_email, recipe_title, recipe_image, recipe_ingridients } = req.body;
 
-        const userExist = await User.findOne({ user_name : user_name || {recipe_title: recipe_title }});
+        const userExist = await User.findOne({ user_name : user_name || {user_email: user_email }});
 
         if (userExist) {
-            console.log("recipe already exist");
-            return res.status(422).json({message: 'recipe already exist, login to update the existing recipe'})
-            
-        }
-        else  {
-                const user = new User({ user_name, recipe_title, recipe_image, recipe_ingridients });
-                console.log("Created a new user");
-                console.log(user);
-                const result = await user.save();
+            const user = new User({ user_name, user_email, recipe_title, recipe_image, recipe_ingridients });
+            console.log("Created a new recipe");
+            console.log(user);
+            const result = await user.save();
 
-                if(result) {
-                    console.log("Inside result block");
-                    return res.status(201).json({ message: "you have submitted youe recipe successfully, thank you" });
-                    
-                } else {
-                    console.log("Inside else result block");
-                    return res.status(500).json({err: "faild to submit"})
-                    
-            }
+            if(result) {
+                console.log("Inside result block");
+                return res.status(201).json({ message: "you have submitted youe recipe successfully, thank you" });
+                
+            } else {
+                console.log("Inside else result block");
+                return res.status(500).json({err: "faild to submit"})          
+        }         
+        }
+        else  {         
+            console.log("user does not exit login to add a new recipe");
+            return res.status(422).json({message: 'user does not exist, login to update the existing recipe'})
             }
 
     }catch (err) {
         console.log(err);
     }
 
-    const { user_name, recipe_title, recipe_image, recipe_ingridients } = req.body;
+    const { user_name, user_email, recipe_title, recipe_image, recipe_ingridients } = req.body;
 
-    if (!user_name || !recipe_title  || !recipe_image  || !recipe_ingridients ) {
+    if (!user_name || !user_email || !recipe_title  || !recipe_image  || !recipe_ingridients ) {
         console.log('Please fill all the fields')
         res.status(422).json({ error: 'Please fill all the fields'});
     }
