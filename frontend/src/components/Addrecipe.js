@@ -19,33 +19,34 @@ function Addrecipe() {
           setRecipe({...recipe, [name]:value});
       }
 
-      let addingRecipe = async(e) => {
-        e.preventDefault();
+      const addingRecipe = async(e) => {
+          e.preventDefault();
+          const {  user_name, user_email, recipe_title, recipe_image, recipe_ingridients } = recipe;
+          
+          const res = await fetch("http://localhost:8080/createrecipe", {
+            method: 'POST',
+            mode:'cors',
+            headers: {
+              "content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            body:JSON.stringify({
+              user_name, user_email, recipe_title, recipe_image, recipe_ingridients
+            })
+          });
+          console.log(res);
+          const recipeData = await res.json();
+          console.log(recipeData);
     
-        const {  user_name, user_email, recipe_title, recipe_image, recipe_ingridients } = recipe;
-    
-        const res = await fetch("localhost:8080/createrecipe", {
-          method: 'POST',
-          headers: {
-            "content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-          body:JSON.stringify({
-            user_name, user_email, recipe_title, recipe_image, recipe_ingridients
-          })
-        });
-    
-        const recipeData = await res.json();
-        console.log(res);
-    
-        if(res.status === 422 || !recipeData) {
-          window.alert("Upload Fail");
+          if(res.status === 422 || !recipeData) {
+          window.alert("Upload Fail, User does not exist please login.");
           console.log("Upload  Fail");
-        }else {
-          window.alert("Recipe added Successfull");
-          console.log("Recipe added Successfull");
-          navigate('./createrecipe')
-        }
+          }else {
+            window.alert("Recipe added Successfull");
+            console.log("Recipe added Successfull");
+            navigate('./createrecipe')
+          }
+    }
 
   return (
         <>
@@ -59,7 +60,19 @@ function Addrecipe() {
                   <input type="text" placeholder="Enter Your Name" name="user_name" id="userName" value={recipe.user_name} onChange={handleInputs} required />
 
                   <label for="email"><b>Email</b></label>
-                  <input type="email"  placeholder="Enter Email" name="user_email" id="email" value={recipe.user_email} onChange={handleInputs}required />
+                  <input
+                    name="user_email"
+                    id="email"
+                    type="email"
+                    value={recipe.user_email} 
+                    onChange={handleInputs}
+                    size="64"
+                    maxlength="64"
+                    placeholder="username@beststartupever.com"
+                    pattern=".+@beststartupever\.com"
+                    title="Please provide only a Best Startup Ever corporate email address"
+                    required />
+                  {/* <input type="email" pattern=".+@beststartupever\.com" placeholder="Enter Email" name="user_email" id="email" value={recipe.user_email} onChange={handleInputs}required /> */}
 
                   <label for="recipename"><b>Recipe Title</b></label>
                   <input type="text" placeholder="Enter recipe title" name="recipe_title" id="recipename" value={recipe.recipe_title} onChange={handleInputs} required />
@@ -77,7 +90,7 @@ function Addrecipe() {
                 </div>
             </form>
         </>
-  )}
-}
+  
+)}
 
 export default Addrecipe

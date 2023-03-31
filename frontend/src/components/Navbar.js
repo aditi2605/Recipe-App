@@ -26,8 +26,8 @@ function Navbar() {
             <div className={`nav-elements ${showNavbar && 'active'}`}>
               <ul>
                 <li><NavLink to='/'>Home</NavLink></li>
-                <li><NavLink to='/recipes'>Recipes</NavLink></li>
-                <li><NavLink to='/createrecipe'>+ New Recipe</NavLink></li>
+                {/* <li><NavLink to='/recipes'>Recipes</NavLink></li>
+                <li><NavLink to='/createrecipe'>+ New Recipe</NavLink></li> */}
                 <li><NavLink to='/signup'>Signup</NavLink></li>
                 <li><NavLink to='/login'>Login</NavLink></li>
               </ul>

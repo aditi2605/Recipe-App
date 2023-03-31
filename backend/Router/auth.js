@@ -29,6 +29,9 @@ router.post("/login", async (req, res) => {
         if(!user_name || !user_email || !user_password || !user_ConfirmPassword) {
             res.status(422).json({ err: "Please fill all the fields"});
         }
+        else if (user_password != user_ConfirmPassword) {
+            return res.status(400).send("Invalid Credentials");
+        }
 
         const loginUserExist = await UserLogin.findOne({ user_email: user_email });
 
@@ -106,7 +109,7 @@ router.post('/signup', async (req, res, next) => {
         const { user_email, user_password } = req.body;
             // Validate user input
             if( !user_email || !user_password ) {
-                return res.status(400).json({ message: "Please fill all the field"})
+                return res.status(400).json({ message: "Please fill all the field from backend"})
             }
             // Validate if user exist in our database
             const userMail = await UserLogin.findOne({ user_email });
@@ -127,11 +130,12 @@ router.post('/signup', async (req, res, next) => {
                 userMail.token = token;
                 
                 // user
-                return res.status(200).json(userMail);
+                console.log(userMail)
+                return res.status(201).json({MESSAGE: "signup successfully"});
                 }
 
                 return res.status(400).send("Invalid Credentials");
-
+                console.log("Invalid Credentials")
 
 
                 // const checkPassword = await bcrypt.compare(user_password, UserLogin.user_ConfirmPassword);
@@ -174,9 +178,13 @@ router.post('/createrecipe', async (req, res) => {
     try {
         const { user_name,user_email, recipe_title, recipe_image, recipe_ingridients } = req.body;
 
-        const userExist = await User.findOne({ user_name : user_name || {user_email: user_email }});
+        const userExist = await UserLogin.findOne({ user_name : user_name || {user_email: user_email }});
 
-        if (userExist) {
+        if (!userExist) {
+            console.log("user does not exit login to add a new recipe");
+            return res.status(422).json({message: 'user does not exist, login to update the existing recipe'})
+        }
+        else  {         
             const user = new User({ user_name, user_email, recipe_title, recipe_image, recipe_ingridients });
             console.log("Created a new recipe");
             console.log(user);
@@ -189,11 +197,7 @@ router.post('/createrecipe', async (req, res) => {
             } else {
                 console.log("Inside else result block");
                 return res.status(500).json({err: "faild to submit"})          
-        }         
-        }
-        else  {         
-            console.log("user does not exit login to add a new recipe");
-            return res.status(422).json({message: 'user does not exist, login to update the existing recipe'})
+        }           
             }
 
     }catch (err) {

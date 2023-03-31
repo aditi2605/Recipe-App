@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
+
 function Login() {
 
   const navigate = useNavigate();
@@ -37,20 +38,28 @@ function Login() {
       })
     });
 
+   if(!user_name || !user_email || !user_password || !user_ConfirmPassword) {
+      res.json({ err: "Please fill all the fields"});
+  }
+  else if (user_password !== user_ConfirmPassword) {
+      return res.send("Invalid Credentials");
+  }
+
     const data =  res.json();
     console.log(res);
 
-    if(res.status === 422 || !data) {
+    if(res.status === 400 || !data) {
       window.alert("Login Fail");
       console.log("Login Fail");
     }else {
       window.alert("Login Successfull");
       console.log("Login Successfull");
-      navigate('./signin')
+      let path = '/dashboard'; 
+      navigate(path);
+      
     }
 
   }
-
 
 //     const res = axios.post("/login", {
 //       method: "POST",
@@ -89,13 +98,13 @@ function Login() {
 
 
                   <label for="email"><b>Email</b></label>
-                  <input type="text" pattern=".+@globex\.com" placeholder="Enter Email" name="user_email" id="email" value={user.email} onChange={handleInputs} required />
+                  <input type="text"  pattern=".+@beststartupever\.com" placeholder="Enter Email" name="user_email" id="email" value={user.email} onChange={handleInputs} required />
 
                   <label for="psw"><b>Password (8 characters minimum)</b></label>
-                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8"value={user.psw }onChange={handleInputs} required />
+                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8" value={user.psw }onChange={handleInputs} required />
 
                   <label for="psw-repeat"><b>Confirm Password</b></label>
-                  <input type="password" placeholder="Confirm Password" name="user_ConfirmPassword" id="psw-confirm" value={user.pswConfirm} onChange={handleInputs} required />
+                  <input type="password" placeholder="Confirm Password" name="user_ConfirmPassword"  minlength="8" id="psw-confirm" value={user.pswConfirm} onChange={handleInputs} required />
                   <hr className='dividerLine' />
                   <p>By creating an account you agree to our <NavLink to="#">Terms & Privacy</NavLink>.</p>
 
