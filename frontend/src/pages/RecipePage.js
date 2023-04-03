@@ -40,15 +40,15 @@ function RecipePage() {
   return (
     <>
 
-          <div className="textAnimationContainer">
-              <p className='txtanihead'>Discover 🧑🏻‍🍳</p>
-              <section className="animation">
+          {/* <div className="textAnimationContainer"> */}
+              {/* <p className='txtanihead'>Discover 🧑🏻‍🍳</p> */}
+              {/* <section className="animation">
                 <div className="first"><div className='aniOne'>Your Inner Gourmand.</div></div>
                 <div className="second"><div className='aniTwo'>The Secret of Good Cooking.</div></div>
                 <div className="third"><div className='aniThree'>The Most Exquisite Flavors.</div></div>
                 {/* <div className="fourth"><div className='anifour'>The Art Of Cooking.</div></div> */}
-              </section>
-          </div>
+              {/* </section>  */}
+          {/* </div> */}
         {/* recipe search section */}
         <form onSubmit={getSearch} className='searchForm'>
             <input className='search-bar' type='text' value={search} onChange={updateSearch}/>

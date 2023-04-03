@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import RecipePage from '../pages/RecipePage';
 import Addrecipe from '../components/Addrecipe';
+// import girlCookingLoader from '../images/girlCookingLoader.jpeg'
 
 function Dashboard() {
 
@@ -16,11 +17,46 @@ function Dashboard() {
     //     const { name, value } = e.target;
     //     setGreeting({...greeting, [name]:value});
     // }
+    const [showNavbar, setShowNavbar] = useState(false);
+  
+    const handleShowNavbar = () => {
+      setShowNavbar(!showNavbar)
+
+    }
+
+    // Loader js
+    function closeLoadingScreen(loadingScreen) {
+        loadingScreen.style.transitionDuration = ".3s";
+        loadingScreen.style.transitionTimingFunction = "cubic-bezier(0,.75,.25,1)";
+        loadingScreen.style.opacity = 0;
+        loadingScreen.style.borderRadius = "40px";
+        loadingScreen.style.transform = "scale(0.75)";
+        loadingScreen.style.cursor = "initial";
+        setTimeout(() => {
+          loadingScreen.parentNode.removeChild(loadingScreen);
+        }, 300)
+      }
+      
+      document.body.onload = ()=>{
+        let lscreen = document.getElementById("loading-screen");
+        setTimeout(()=>{closeLoadingScreen(lscreen)}, 3000); 
+      }
+    
 
   return (
         <>
-                <div className="layout">
-                <a className="header" href="/"><i className="fa fa-bars"></i>
+            {/* dashboard loader */}
+            {/* <div className="loading-screen" id="loading-screen">
+                <div className="spinner-container">
+                    <img className='loaderImg' src={girlCookingLoader} alt="girl cooking"/>
+                    <div className="spinner"></div>
+                </div>
+                <p>Loading your dashboard...</p>
+            </div> */}
+            {/* loader end */}
+
+            <div className="layout">
+                <a className="header" onClick={ handleShowNavbar } href="/"><i className="fa fa-bars"></i>
                     <div className="header-user"><i className="fas fa-user-circle icon"></i>Logout! 
                     {/* <span id="userName" onChange={handleInput} name='user_name' value={greeting.user_name}></span> */}
                     </div>
@@ -37,23 +73,26 @@ function Dashboard() {
                     </ul>
                 </div>
 
-                <main className="content">
 
-                    {/* <!--backend--> */}
-                    <div className="heading">
-                    <h2 className="formHeading">Browse activity</h2>
-                    </div>
-                    <br />
-            <div id="AddRecipe" >{
-  elementVisible ?
-                <Addrecipe />:null } </div>
-                <div id="searchRecipe" >{
-  showElement?
-                <RecipePage />:null } </div>
-            </main>
+        {/* Dashboard right content */}
+        <div className="content"> 
+            {/* <!--backend--> */} 
+            <div className="heading">
+                <h2 className="formHeading">Discover 🧑🏻‍🍳 <b>  The Secret of Good Cooking </b></h2>
             
-            </div>
-        </>
+                <div id="AddRecipe" >{elementVisible ?
+                    <Addrecipe />:null }
+                 </div>
+                <div id="searchRecipe" >{showElement?
+                    <RecipePage />:null } 
+                 </div>
+                 </div>
+             <br />
+            
+        </div> 
+            
+        </div>
+    </>
   )
 }
 
