@@ -1,28 +1,26 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 function Signup() {
 
-// const navigate =useNavigate;
+const navigate = useNavigate();
 
 const [signin, setSignin] = useState({
   user_email:"", user_password:""
 });
 
-let name, value ;
-const handleInput = (e) => {
-  console.log(e);
-  name = e.targer.value;
-  value = e.target.value;
 
-  setSignin({signin, [name]:value});
+const handleInput = (e) => {
+  const { name, value } = e.target;
+  setSignin({...signin, [name]:value});
 
 }
 const handleClick = async(e) => {
   e.preventDefault();
   const { user_email, user_password } = signin;
+  console.log(user_email, user_password);
 
   const res = await fetch("http://localhost:8080/signup", {
     method:'POST',
@@ -38,12 +36,14 @@ const handleClick = async(e) => {
   console.log(res);
   const data = await res.json();
   console.log(data);
+  let path = '/dashboard'; 
+  navigate(path);
 
-  if( !user_email || !user_password ) {
-    window.alert( "Please fill all the field");
-}else {
-    window.alert("signup successfully");
-    }
+//   if( !user_email || !user_password ) {
+//     window.alert( "Please fill all the field");
+// }else {
+//     window.alert("signup successfully");
+//     }
 
   // if (res.status === 400 || !data) {
   //   window.alert("Upload Fail, User does not exist please login.");
@@ -57,16 +57,17 @@ const handleClick = async(e) => {
   
   return (
         <>
-            <form  method='POST'>
+            <form action="/signup" method='POST'>
+              {console.log('user',signin )}
                <div className="signupForm">
                   <h1 className='formHeading'>SignUp</h1>
                   <hr />
 
                   <label for="email"><b>Email</b></label>
-                  <input type="text" pattern=".+@globex\.com" placeholder="Enter Email" name="user_email" id="email" onChange={handleInput} required />
+                  <input type="text" pattern=".+@globex\.com" placeholder="Enter Email" name="user_email" id="email" value={signin.user_email} onChange={handleInput} required />
 
                   <label for="psw"><b>Password (8 characters minimum)</b></label>
-                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8" onChange={handleInput} required />
+                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8" value={signin.user_password} onChange={handleInput} required />
 
                   
                   <hr className='dividerLine' />

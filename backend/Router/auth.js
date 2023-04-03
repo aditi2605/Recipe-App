@@ -108,12 +108,26 @@ router.post('/signup', async (req, res, next) => {
         // Get user input
         const { user_email, user_password } = req.body;
             // Validate user input
-            if( !user_email || !user_password ) {
-                return res.status(400).json({ message: "Please fill all the field from backend"})
-            }
+            // if( !user_email || !user_password ) {
+            //     return res.status(400).json({ message: "Please fill all the field from backend"})
+            // }
             // Validate if user exist in our database
-            const userMail = await UserLogin.findOne({ user_email });
-            console.log(userMail);
+            const userMail = await UserLogin.findOne({ user_email});
+                if (!userMail) {
+                    return res.status(404).json({err: "user not found"})
+                }
+        //     // const userMail = await UserLogin.findOne({ user_email });
+        //     // console.log(userMail);
+
+        //    if(await bcrypt.compare(user_password, userMail.user_password)) {
+        //     const token = jwt.sign({}, TOKEN_KEY);
+
+        //     if (res.status(201)) {
+        //         return res.json({status: "ok", data: token});
+        //     }else {
+        //         return res.json({status: "error", error: "Invalid Password"});
+        //     }
+        //    }
 
             if(userMail && (await bcrypt.compare(user_password, userMail.user_password))) {
 
@@ -134,10 +148,12 @@ router.post('/signup', async (req, res, next) => {
                 return res.status(201).json({MESSAGE: "signup successfully"});
                 }
 
-                return res.status(400).send("Invalid Credentials");
-                console.log("Invalid Credentials")
+                return res.status(400).json({error: "Invalid Password"});
+                console.log("Invalid Password")
 
 
+
+// old code
                 // const checkPassword = await bcrypt.compare(user_password, UserLogin.user_ConfirmPassword);
         
                 //  const token = await userMail.generateAuthToken();
@@ -178,13 +194,9 @@ router.post('/createrecipe', async (req, res) => {
     try {
         const { user_name,user_email, recipe_title, recipe_image, recipe_ingridients } = req.body;
 
-        const userExist = await UserLogin.findOne({ user_name : user_name || {user_email: user_email }});
+        const userExist = await UserLogin.findOne({ user_email });
 
-        if (!userExist) {
-            console.log("user does not exit login to add a new recipe");
-            return res.status(422).json({message: 'user does not exist, login to update the existing recipe'})
-        }
-        else  {         
+        if (userExist) {
             const user = new User({ user_name, user_email, recipe_title, recipe_image, recipe_ingridients });
             console.log("Created a new recipe");
             console.log(user);
@@ -198,6 +210,11 @@ router.post('/createrecipe', async (req, res) => {
                 console.log("Inside else result block");
                 return res.status(500).json({err: "faild to submit"})          
         }           
+            
+        }
+        else  {         
+            console.log("user does not exit login to add a new recipe");
+            return res.status(422).json({message: 'user does not exist, login to update the existing recipe'})
             }
 
     }catch (err) {

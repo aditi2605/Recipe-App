@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // import routerfile auth.js to get the DB
-app.use(require('./router/auth'))
+app.use(require('../backend/Router/auth'))
 
 app.get('/', (req, res) => {
     res.send('Hello world')
@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
 
 app.get("/signup", (req, res) => {
     res.cookie("test", "codeGirl");
+})
+app.post("/signup", (req, res) => {
+    res.cookie("test", "codeGirl");
+    res.status(201).json({message: "signup successfull"})
 })
 
 app.post('/createrecipe', (req, res) => {

@@ -8,11 +8,22 @@ function Dashboard() {
 
     const [elementVisible, setElementVisible] = useState(false);
     const [showElement, setShowElement] = useState(false);
+    // const [greeting, setGreeting] = useState({
+    //     user_name:''
+    // });
+
+    // const handleInput = (e) => {
+    //     const { name, value } = e.target;
+    //     setGreeting({...greeting, [name]:value});
+    // }
+
   return (
         <>
                 <div className="layout">
                 <a className="header" href="/"><i className="fa fa-bars"></i>
-                    <div className="header-user"><i className="fas fa-user-circle icon"></i>Logout! <span id="userName"></span></div>
+                    <div className="header-user"><i className="fas fa-user-circle icon"></i>Logout! 
+                    {/* <span id="userName" onChange={handleInput} name='user_name' value={greeting.user_name}></span> */}
+                    </div>
                 </a>
             <div className="sidebar">
                     <ul>
@@ -25,6 +36,7 @@ function Dashboard() {
                     </li> */}
                     </ul>
                 </div>
+
                 <main className="content">
 
                     {/* <!--backend--> */}

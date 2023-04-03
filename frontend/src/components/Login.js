@@ -13,76 +13,59 @@ function Login() {
     user_name:"", user_email:"", user_password:"", user_ConfirmPassword:""
   });
 
-  let name, value ;
   const handleInputs = (e) => {
-      console.log(e);
-      name = e.target.name;
-      value = e.target.value;
-
+      const { name, value } = e.target
       setUser({...user, [name]:value});
   }
 
-  const postData = async(e) => {
-    e.preventDefault();
+  // axios and .then .catch method
+  // const register = () => {
+  //   const {  user_name, user_email, user_password, user_ConfirmPassword } = user;
+  //    if (user_name && user_email && user_password && (user_password === user_ConfirmPassword)){
+  //       axios.post("http://localhost:8080/login", user)
+  //       .then(res => console.log(res))
+  //    }else{
+  //     alert("invalid input");
+  //    }
+  // }
 
-    const {  user_name, user_email, user_password, user_ConfirmPassword } = user;
 
-    const res = await fetch("http://localhost:8080/login", {
-      method: 'POST',
-      headers: {
-        "content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body:JSON.stringify({
-        user_name, user_email, user_password, user_ConfirmPassword
-      })
-    });
 
-   if(!user_name || !user_email || !user_password || !user_ConfirmPassword) {
-      res.json({ err: "Please fill all the fields"});
-  }
-  else if (user_password !== user_ConfirmPassword) {
-      return res.send("Invalid Credentials");
-  }
-
-    const data =  res.json();
-    console.log(res);
-
-    if(res.status === 400 || !data) {
-      window.alert("Login Fail");
-      console.log("Login Fail");
-    }else {
-      window.alert("Login Successfull");
-      console.log("Login Successfull");
-      let path = '/dashboard'; 
-      navigate(path);
+  // fetch , async, await method :
+  const register = async(e) => {
+        e.preventDefault();
+        const {  user_name, user_email, user_password, user_ConfirmPassword } = user;
+        if (!user_name || !user_email || !user_password || !user_ConfirmPassword) {
+          alert("Please fill all the fields");
+        }
+        if (user_name && user_email && user_password && (user_password === user_ConfirmPassword)){
+          const res = await fetch("http://localhost:8080/login", {
+            method: 'POST',
+            headers: {
+              "content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            body:JSON.stringify({
+              user_name, user_email, user_password, user_ConfirmPassword
+          })
+        });
       
+          const data =  res.json();
+          console.log(res);
+      
+          if(res.status === 400 || !data) {
+            window.alert("Login Fail");
+            console.log("Login Fail");
+          }else {
+            window.alert("Login Successfull");
+            console.log("Login Successfull");
+            let path = '/dashboard'; 
+            navigate(path);
+            
+          }
+      
+        }
     }
-
-  }
-
-//     const res = axios.post("/login", {
-//       method: "POST",
-//       headers: {
-//         "content-Type": "application/json"
-//       },
-//       body:JSON.stringify({
-//         name , email, psw, pswConfirm
-//       })
-//     });
-//        const Data = await res.json();
-
-//       if(res.status === 422 || !res) {
-//         window.alert("Login Fail");
-//         console.log("Login Fail");
-//       }else {
-//         window.alert("Login Successfull");
-//         console.log("Login Successfull");
-//       }
-
-  
-
-     
 
 
   return (
@@ -94,21 +77,20 @@ function Login() {
                   <hr />
 
                   <label for="Username"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Your Name" name="user_name" id="userName" value={user.name} onChange={handleInputs} required />
-
+                  <input type="text" placeholder="Enter Your Name" name="user_name" id="userName" value={user.user_name} onChange={handleInputs} required />
 
                   <label for="email"><b>Email</b></label>
-                  <input type="text"  pattern=".+@beststartupever\.com" placeholder="Enter Email" name="user_email" id="email" value={user.email} onChange={handleInputs} required />
+                  <input type="email" pattern='/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/'  placeholder="Enter Email" name="user_email" id="email" value={user.user_email} onChange={handleInputs} required />
 
                   <label for="psw"><b>Password (8 characters minimum)</b></label>
-                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8" value={user.psw }onChange={handleInputs} required />
+                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8" value={user.user_password }onChange={handleInputs} required />
 
                   <label for="psw-repeat"><b>Confirm Password</b></label>
-                  <input type="password" placeholder="Confirm Password" name="user_ConfirmPassword"  minlength="8" id="psw-confirm" value={user.pswConfirm} onChange={handleInputs} required />
+                  <input type="password" placeholder="Confirm Password" name="user_ConfirmPassword"  minlength="8" id="psw-confirm" value={user.user_ConfirmPassword}  onChange={handleInputs} required />
                   <hr className='dividerLine' />
                   <p>By creating an account you agree to our <NavLink to="#">Terms & Privacy</NavLink>.</p>
 
-                  <button type="submit" className="registerbtn" onClick={postData}>Register</button>
+                  <button type="submit" className="registerbtn" onClick={register}>Register</button>
             </div>
             
             <div className="container signin">

@@ -43,8 +43,9 @@ function Addrecipe() {
           console.log("Upload  Fail");
           }else {
             window.alert("Recipe added Successfull");
+            let path = '/'; 
+            navigate(path);
             console.log("Recipe added Successfull");
-            navigate('./createrecipe')
           }
     }
 
