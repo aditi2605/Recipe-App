@@ -1,10 +1,38 @@
 import React from 'react'
-// import aboutus from '../images/aboutus.jpg'
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Recipe from '../components/Recipe';
 
 
 function RecipePage() {
+  const navigate = useNavigate();
+
+  // Navbar
+  const [showNavbar, setShowNavbar] = useState(false);
+  
+   
+  // Loader js
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }, []);
+
+  // redirect to addrecipe page
+  const handleInput = () => {
+      let path = '/createrecipe '; 
+      navigate(path);
+  } 
+  
+  const handleInputs = () => {
+      let path = '/dashboard '; 
+      navigate(path);
+  }  
+
+
+  // search recipes
   const APP_ID = "85b5b9d5";
   const APP_KEY = "cc2a61eb50ae063e203c421f27e4524d";
 
@@ -21,12 +49,6 @@ function RecipePage() {
     getRecipes();
   }, [query]);
 
-
-  // const randomDish = ['salad', 'chat', 'pav bhaji','biryani', 'samosa', 'noodles'] ;
-    
-  
-    
-
  
   const updateSearch = (e) => {
       setSearch(e.target.value);
@@ -40,45 +62,74 @@ function RecipePage() {
   return (
     <>
 
-          {/* <div className="textAnimationContainer"> */}
-              {/* <p className='txtanihead'>Discover 🧑🏻‍🍳</p> */}
-              {/* <section className="animation">
-                <div className="first"><div className='aniOne'>Your Inner Gourmand.</div></div>
-                <div className="second"><div className='aniTwo'>The Secret of Good Cooking.</div></div>
-                <div className="third"><div className='aniThree'>The Most Exquisite Flavors.</div></div>
-                {/* <div className="fourth"><div className='anifour'>The Art Of Cooking.</div></div> */}
-              {/* </section>  */}
-          {/* </div> */}
-        {/* recipe search section */}
-        <form onSubmit={getSearch} className='searchForm'>
-            <input className='search-bar' type='text' value={search} onChange={updateSearch}/>
-            <button className='search-button' type='submit'>Search</button>
-        </form>
-          {recipe.map(recipe => (
-            <Recipe title={recipe.recipe.label}
-            healthlables={recipe.recipe.healthLables}
-            image={recipe.recipe.image}
-            ingredients={recipe.recipe.ingredients} 
-            />
-          ))}
-  
-
-
-        {/* <div>
-        <div classNameName='about'>
-        <h1 classNameName='aboutUs'> About Us</h1>
-        </div>   
-            <div classNameName='aboutPage'>
-                    <div classNameName='aboutImg'>
-                        <img classNameName='aboutimg' src={aboutus} alt='foodimg' height= '400px' width= '550px'  />
+       {/* dashboard loader */}
+            
+       <div className="dashboardContainer">
+                { loading ? (
+                    <div className="loader-container"> 
+                        <div className="spinner"></div>
+                        <p><b> Loading your dashboard... </b></p>
                     </div>
-                    <div classNameName='aboutheading'>
-                        <h1 classNameName='heroaboutHeading'>Who we are, what we do?!</h1>
-                        <p classNameName='aboutPara'>Recipes provide consistency in the production of menu items. Recipes provide food cost control. Recipes provide knowledge for front of the house staff as a sales tool and to help consumers with dietary concerns and allergies.</p>
-                        <button classNameName='explorbtn'>Start exploring</button>
+               ) : (
+               
+                <div className="layout">
+                    <a className="header"  onClick={() => setShowNavbar(!showNavbar)} href="/"><i className="fa fa-bars"></i>
+                    <div className="header-user"><i className="fas fa-user-circle icon"></i>Logout! 
+                    {/* <span id="userName" onChange={handleInput} name='user_name' value={greeting.user_name}></span> */}
                     </div>
+                </a>
+                <div className="sidebar" title={showNavbar ? 'Hide Nav' : 'Show Nav'}> 
+                    <ul>
+                            <button className="sidebar-list-item" onClick={handleInputs} ><i className="fa-solid fa-house"></i>Dashboard
+                            </button>
+                            <button className="sidebar-list-item" onClick={handleInput}><i className="fa-solid fa-plus"></i>Create Recipe
+                            </button>
+                            <button className="sidebar-list-item"> <i className="fas fa-search icon"></i>Search Recipe
+                            </button>
+                            {/* <li> <a className="sidebar-list-item" href="#0"> <i className="fas fa-arrow-right-from-bracket icon"></i><em>Logout</em></a>
+                            </li> */}
+                        </ul>
+                </div>
+
+                {/* Dashboard right content */}
+                
+             
+                <div className="content"> 
+                    {/* <!--backend--> */} 
+                    <div className="heading">
+                       {/* recipe search section */}
+                            <form onSubmit={getSearch} className='searchForm'>
+                              <input className='search-bar' type='text' value={search} onChange={updateSearch}/>
+                              <button className='search-button' type='submit'>Search</button>
+                            </form>
+                          {recipe.map(recipe => (
+                              <Recipe title={recipe.recipe.label}
+                              image={recipe.recipe.image}
+                              ingredients={recipe.recipe.ingredients} 
+                              />
+                            ))} 
+                    </div>     
+                </div> 
             </div>
-            </div> */}
+
+     )}             
+            </div>
+           
+
+
+
+
+
+
+
+
+
+
+
+
+        
+       
+
     </>
   )
 }

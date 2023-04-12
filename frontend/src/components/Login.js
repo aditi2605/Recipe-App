@@ -1,103 +1,72 @@
 import React from 'react'
-// import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 function Login() {
 
-  const navigate = useNavigate();
-  
-  const [user, setUser] = useState({
-    user_name:"", user_email:"", user_password:"", user_ConfirmPassword:""
+const navigate = useNavigate();
+
+const [login, setLogin] = useState({
+  user_email:"", user_password:""
+});
+
+
+const handleInput = (e) => {
+  const { name, value } = e.target;
+  setLogin({...login, [name]:value});
+
+}
+const handleClick = async(e) => {
+  e.preventDefault();
+  const { user_email, user_password } = login;
+  console.log(user_email, user_password);
+
+  const res = await fetch("http://localhost:8080/login", {
+    method:'POST',
+    mode:'cors',
+    headers: {
+      "content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body:JSON.stringify({
+      user_email, user_password
+    })
   });
-
-  const handleInputs = (e) => {
-      const { name, value } = e.target
-      setUser({...user, [name]:value});
-  }
-
-  // axios and .then .catch method
-  // const register = () => {
-  //   const {  user_name, user_email, user_password, user_ConfirmPassword } = user;
-  //    if (user_name && user_email && user_password && (user_password === user_ConfirmPassword)){
-  //       axios.post("http://localhost:8080/login", user)
-  //       .then(res => console.log(res))
-  //    }else{
-  //     alert("invalid input");
-  //    }
-  // }
-
-
-
-  // fetch , async, await method :
-  const register = async(e) => {
-        e.preventDefault();
-        const {  user_name, user_email, user_password, user_ConfirmPassword } = user;
-        if (!user_name || !user_email || !user_password || !user_ConfirmPassword) {
-          alert("Please fill all the fields");
-        }
-        if (user_name && user_email && user_password && (user_password === user_ConfirmPassword)){
-          const res = await fetch("http://localhost:8080/login", {
-            method: 'POST',
-            headers: {
-              "content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-            },
-            body:JSON.stringify({
-              user_name, user_email, user_password, user_ConfirmPassword
-          })
-        });
-      
-          const data =  res.json();
-          console.log(res);
-      
-          if(res.status === 400 || !data) {
-            window.alert("Login Fail");
-            console.log("Login Fail");
-          }else {
-            window.alert("Login Successfull");
-            console.log("Login Successfull");
-            let path = '/dashboard'; 
-            navigate(path);
-            
-          }
-      
-        }
-    }
-
-
+  console.log(res);
+  const data = await res.json();
+  console.log(data);
+  let path = '/dashboard'; 
+  navigate(path);
+ 
+}                 
+  
   return (
-    <>
-        <form method='POST'>
+        <>
+            <form  method='POST'>
+              {console.log('user',login )}
                <div className="loginForm">
-                  <h1 className='formHeading'>Register</h1>
-                  <p className='formAlert'>Please Fill In This Form to Create an Account.</p>
+                  <h1 className='formHeading'>Login</h1>
                   <hr />
 
-                  <label for="Username"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Your Name" name="user_name" id="userName" value={user.user_name} onChange={handleInputs} required />
-
                   <label for="email"><b>Email</b></label>
-                  <input type="email" pattern='/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/'  placeholder="Enter Email" name="user_email" id="email" value={user.user_email} onChange={handleInputs} required />
+                  <input type="email" placeholder="Enter Email" name="user_email" id="email" value={login.user_email} onChange={handleInput} required />
 
                   <label for="psw"><b>Password (8 characters minimum)</b></label>
-                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8" value={user.user_password }onChange={handleInputs} required />
+                  <input type="password" placeholder="Enter Password" name="user_password" id="psw"  value={login.user_password} onChange={handleInput} required />
 
-                  <label for="psw-repeat"><b>Confirm Password</b></label>
-                  <input type="password" placeholder="Confirm Password" name="user_ConfirmPassword"  minlength="8" id="psw-confirm" value={user.user_ConfirmPassword}  onChange={handleInputs} required />
+                  
                   <hr className='dividerLine' />
                   <p>By creating an account you agree to our <NavLink to="#">Terms & Privacy</NavLink>.</p>
 
-                  <button type="submit" className="registerbtn" onClick={register}>Register</button>
+                  <button type="submit" className="signupbtn" onClick={handleClick}>Log In</button>
             </div>
             
-            <div className="container signin">
-              <p>Already have an account? <NavLink to="/signup">Sign in</NavLink></p>
+            <div className="container login">
+              <p>Don’t have an account? <NavLink to="/login">Sign up</NavLink></p>
             </div>
         </form>
-    </>
+        </>
   )
 }
 

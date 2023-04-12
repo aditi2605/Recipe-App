@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
-    user_name: {
-        type: String,
-        required:true
-    },
+const userCreatedRecipeSchema = new mongoose.Schema({
     user_email: {
         type: String,
         required:true
@@ -20,7 +16,7 @@ const userSchema = new mongoose.Schema({
     recipe_ingridients: {
     type: String,
     required:true
-    },
+    }, 
     created_date: {
         type : Date, 
         default: Date.now
@@ -28,6 +24,6 @@ const userSchema = new mongoose.Schema({
 });
 
 
-const User = mongoose.model('USERRECIPE', userSchema);
+const CreateRecipe = mongoose.model('usercreatedrecipe', userCreatedRecipeSchema);
 
-module.exports = User;
+module.exports = CreateRecipe;

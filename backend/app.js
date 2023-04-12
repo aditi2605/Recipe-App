@@ -1,49 +1,22 @@
 const express = require('express');
+//const bodyParser = require('body-parser');
 const cors = require('cors');
-const app = express();
 require('dotenv/config');
 const PORT = process.env.PORT;
 
+
 require('./db/conn');
-// import userschema
-const User = require('./model/userSchema');
 
-// cors
+const UserLogin = require('./model/loginSchema');
+const UserSignup = require('./model/signupSchema');
+const CreateRecipe = require('./model/userCreatedRecipeSchema')
+
+
+const app = express();
 app.use(cors());
-
-
-// collect the data into json formar
 app.use(express.json());
-
-// import routerfile auth.js to get the DB
-app.use(require('../backend/Router/auth'))
-
-app.get('/', (req, res) => {
-    res.send('Hello world')
-})
-
-app.get("/signup", (req, res) => {
-    res.cookie("test", "codeGirl");
-})
-app.post("/signup", (req, res) => {
-    res.cookie("test", "codeGirl");
-    res.status(201).json({message: "signup successfull"})
-})
-
-app.post('/createrecipe', (req, res) => {
-    console.log(req.body);
-    res.json({message: req.body});
-})
-
-
-
-
-
-
-
-
-
-
+// app.use(bodyParser.urlencoded( { extended: true}));
+app.use(require('../backend/Router/auth.js'))
 
 
 

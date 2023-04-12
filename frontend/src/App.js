@@ -6,7 +6,9 @@ import RecipePage from './pages/RecipePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignUpPage';
 import AddNewRecipePage from './pages/AddNewRecipePage';
-import Dashboard from './components/Dashboard';
+import DashboardPage from './pages/DashBoardPage';
+import AllRecipes from './components/AllRecipes';
+import EditRecipe from './components/EditRecipe';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
           <Route path="/createrecipe" element={<AddNewRecipePage />}/>
           <Route path="/login" element={<LoginPage />}/>
           <Route path="/signup" element={<SignupPage />}/> 
-          <Route path="/dashboard" element={<Dashboard />}/> 
+          <Route path="/dashboard" element={<DashboardPage />}/> 
+          <Route path="/userallrecipes" element={<AllRecipes />}/> 
+          <Route path="/editrecipe" element={<EditRecipe />}/>
         </Routes>
       </BrowserRouter>
       
