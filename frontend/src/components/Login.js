@@ -17,8 +17,8 @@ const handleInput = (e) => {
   setLogin({...login, [name]:value});
 
 }
-const handleClick = async(e) => {
-  e.preventDefault();
+const handleClick = async() => {
+  // e.preventDefault();
   const { user_email, user_password } = login;
   console.log(user_email, user_password);
 
@@ -52,7 +52,7 @@ const handleClick = async(e) => {
                   <label for="email"><b>Email</b></label>
                   <input type="email" placeholder="Enter Email" name="user_email" id="email" value={login.user_email} onChange={handleInput} required />
 
-                  <label for="psw"><b>Password (8 characters minimum)</b></label>
+                  <label for="psw"><b>Password </b></label>
                   <input type="password" placeholder="Enter Password" name="user_password" id="psw"  value={login.user_password} onChange={handleInput} required />
 
                   

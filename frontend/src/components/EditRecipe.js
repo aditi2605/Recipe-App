@@ -32,10 +32,7 @@ function EditRecipe() {
     
           setRecipe({...recipe, [name]:value});
       }
-
-      
-
-
+      // Update Recipe
       const addingRecipe = async(e) => {
           e.preventDefault();
           const {  user_name, user_email, recipe_title, recipe_image, recipe_ingridients } = recipe;

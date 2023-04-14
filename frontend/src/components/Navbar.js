@@ -4,9 +4,6 @@ import {ReactComponent as Brand} from '../images/logo.svg';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Hamburger }from '../images/Hamburger.svg';
 
-
-
-
 function Navbar() {
  
     const [showNavbar, setShowNavbar] = useState(false);
@@ -26,8 +23,6 @@ function Navbar() {
             <div className={`nav-elements ${showNavbar && 'active'}`}>
               <ul>
                 <li><NavLink to='/'>Home</NavLink></li>
-                {/* <li><NavLink to='/recipes'>Recipes</NavLink></li>
-                <li><NavLink to='/createrecipe'>+ New Recipe</NavLink></li> */}
                 <li><NavLink to='/signup'>Signup</NavLink></li>
                 <li><NavLink to='/login'>Login</NavLink></li>
               </ul>

@@ -766,6 +766,7 @@ p {
   border: 1px solid green;
   border-radius: 50px;
   margin-bottom: 20px;
+  margin-right: 50px;
 }
 
 .displayRecipetitle {
@@ -820,6 +821,23 @@ li {
   align-items: center;
   list-style: none;
   padding: 2px;
+}
+
+.editbtn, .dltbtn {
+  font-size: 1.1em;
+  background-color: #4c923e;
+  color: white;
+  padding: 5px 15px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  /* width: 100%; */
+  opacity: 0.9;
+  border-radius: 20px;
+}
+
+.editbtn:hover, .dltbtn:hover {
+  opacity: 1;
 }
 
 /*** LoginPage starts from here ***/
@@ -885,6 +903,7 @@ hr{
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+ 
 }
 
 .registerbtn:hover {
@@ -1277,7 +1296,7 @@ a {
   justify-content: center;
   text-align: center;
   margin-top: 20px;
-  margin-left: 80px;
+  margin-left: 300px;
   /* border: 2px solid green; */
   /* margin-left: 100px; */
 
@@ -1304,10 +1323,10 @@ flex-direction: column;
  
 }
 
-@media (max-width:1087px) {
+@media (max-width:1200px) {
   .content {
     margin-top: 20px;
-    /* margin-left: 10px; */
+    margin-left: 250px;
   
   }
 
@@ -1323,10 +1342,10 @@ flex-direction: column;
   }
 }
 
-@media (max-width:700px) {
+@media (max-width:950px) {
   .content {
     margin-top: 20px;
-    /* margin-left: 10px; */
+    margin-left: 200px;
   
   }
 
@@ -1342,10 +1361,10 @@ flex-direction: column;
   }
 }
 
-@media (max-width:560px) {
+@media (max-width:788px) {
   .content {
     margin-top: 20px;
-    /* margin-left: 15px; */
+    margin-left: 150px;
   
   }
 
@@ -1361,10 +1380,29 @@ flex-direction: column;
   }
 }
 
-@media (max-width:460px) {
+@media (max-width:670px) {
   .content {
     margin-top: 20px;
-    /* margin-left: 20px; */
+    margin-left: 100px;
+  
+  }
+
+  .heading {
+    flex-direction: column;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+    /* margin-right: 10px; */
+    /* margin-left: 28px;  */
+  }
+}
+
+@media (max-width:554px) {
+  .content {
+    margin-top: 20px;
+    margin-left: 80px;
   
   }
 
@@ -1377,6 +1415,28 @@ flex-direction: column;
     margin-top: 100px;
     margin-right: 10px;
     /* margin-left: 28px;  */
+  }
+}
+
+@media (max-width:428px) {
+  .content {
+    margin-top: 20px;
+    margin-left: 65px;
+  
+  }
+
+  .heading {
+    flex-direction: column;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+    /* margin-right: 10px; */
+    /* margin-left: 28px;  */
+  }
+  .displayRecipe {
+    margin-right: 0px;
   }
 }
 

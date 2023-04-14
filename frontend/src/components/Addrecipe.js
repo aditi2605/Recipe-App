@@ -108,44 +108,37 @@ function Addrecipe() {
                 {/* Dashboard right content */}
                 
              
-                <div className="content"> 
-                    {/* <!--backend--> */} 
+                <div className="content">
                     <div className="heading">
-                    <form method='POST'>
-               <div className="addRecipeForm">
-                  <h1 className='formHeading'>Add a Recipe</h1>
-                  <p className='formAlert'>Please Fill in This Form to Create a new Recipe.</p>
-                  <hr />
+                        <form method='POST'>
+                          <div className="addRecipeForm">
+                              <h1 className='formHeading'>Add a Recipe</h1>
+                              <p className='formAlert'>Please Fill in This Form to Create a new Recipe.</p>
+                              <hr />
+                            <label for="email"><b>Email</b></label>
+                            <input type="email"  placeholder="Enter Email" name="user_email" id="email" value={recipe.user_email} onChange={handleInputs}required />
 
-                  <label for="email"><b>Email</b></label>
-                  <input type="email"  placeholder="Enter Email" name="user_email" id="email" value={recipe.user_email} onChange={handleInputs}required />
+                            <label for="recipename"><b>Recipe Title</b></label>
+                            <input type="text" placeholder="Enter recipe title" name="recipe_title" id="recipename" value={recipe.recipe_title} onChange={handleInputs} required />
 
-                  <label for="recipename"><b>Recipe Title</b></label>
-                  <input type="text" placeholder="Enter recipe title" name="recipe_title" id="recipename" value={recipe.recipe_title} onChange={handleInputs} required />
+                            <label for="recipeimg"><b>Select a Recipe Image</b></label>
+                            <input type="text" placeholder="Enter image URL" id="imgfile" name="recipe_image" value={recipe.recipe_image} onChange={handleInputs}/>  
 
-                  <label for="recipeimg"><b>Select a Recipe Image</b></label>
-                  <input type="file" id="imgfile" name="recipe_image" value={recipe.recipe_image} onChange={handleInputs}/>  
+                            <label for="subject"><b>Add Recipe Ingredients</b></label>
+                            <input type="text" id="recipeingredients" name="recipe_ingridients" placeholder="Write something.." value={recipe.recipe_ingridients} onChange={handleInputs} /> 
 
-                  <label for="subject"><b>Add Recipe Ingredients</b></label>
-                  <textarea id="recipeingredients" name="recipe_ingridients" placeholder="Write something.." value={recipe.recipe_ingridients} onChange={handleInputs} ></textarea>  
-
-                  <button type="submit" className="addRecipe" onClick={addingRecipe}>Add</button>
-              </div>
-               <div className="container login">
-                    <p>Don’t have an account? <NavLink to="/login">Log in</NavLink></p>
+                            <button type="submit" className="addRecipe" onClick={addingRecipe}>Add</button>
+                          </div>
+                          <div className="container login">
+                                <p>Don’t have an account? <NavLink to="/login">Log in</NavLink></p>
+                          </div>
+                        </form>     
+                      </div>     
+                    </div> 
                 </div>
-            </form>
-                        
-                    </div>     
-                </div> 
+              )}             
             </div>
-
-                
-            
-                )}             
-            </div>
-
-        </>
+          </>
   
 )}
 

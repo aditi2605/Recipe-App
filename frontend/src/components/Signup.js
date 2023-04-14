@@ -19,8 +19,8 @@ function Signup() {
   }
 
   // fetch , async, await method :
-  const register = async(e) => {
-        e.preventDefault();
+  const register = async() => {
+        // e.preventDefault();
         const {  user_name, user_email, user_password, user_ConfirmPassword } = user;
         if (!user_name || !user_email || !user_password || !user_ConfirmPassword) {
           alert("Please fill all the fields");
@@ -43,16 +43,6 @@ function Signup() {
           console.log(data);
           let path = '/dashboard'; 
           navigate(path);
-      
-          // if(res.status === 400 || !data) {
-          //   window.alert("login  Fail");
-          //   console.log("login Fail");
-          // }else {
-          //   window.alert("login  Successfull");
-          //   console.log("login Successfull");
-          //   
-            
-          // }
       
         }
     }
@@ -81,11 +71,11 @@ function Signup() {
                   <p>By creating an account you agree to our <NavLink to="#">Terms & Privacy</NavLink>.</p>
 
                   <button type="submit" className="registerbtn" onClick={register}>Register</button>
-            </div>
+                </div>
             
-            <div className="container signin">
-              <p>Already have an account? <NavLink to="/signup">Log in</NavLink></p>
-            </div>
+              <div className="container signin">
+                <p>Already have an account? <NavLink to="/signup">Log in</NavLink></p>
+              </div>
         </form>
     </>
   )

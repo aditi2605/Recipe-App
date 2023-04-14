@@ -7,8 +7,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignUpPage';
 import AddNewRecipePage from './pages/AddNewRecipePage';
 import DashboardPage from './pages/DashBoardPage';
-import AllRecipes from './components/AllRecipes';
-import EditRecipe from './components/EditRecipe';
+import Updaterecipe from './components/Updaterecipe';
 
 function App() {
   return (
@@ -21,8 +20,8 @@ function App() {
           <Route path="/login" element={<LoginPage />}/>
           <Route path="/signup" element={<SignupPage />}/> 
           <Route path="/dashboard" element={<DashboardPage />}/> 
-          <Route path="/userallrecipes" element={<AllRecipes />}/> 
-          <Route path="/editrecipe" element={<EditRecipe />}/>
+          <Route path="/updaterecipe/:id" element={<Updaterecipe />}/>
+          <Route path="/dashboard/:id" element={<DashboardPage />}/>
         </Routes>
       </BrowserRouter>
       

@@ -154,19 +154,64 @@ router.post('/createrecipe', async (req, res) => {
 
 
 
-// Edit Recipe 
-// router.get('/:id', async (req, res) => {
-//     console.log(req.params.id)
-//     try {
-//         const user = await UserRecipe.findById(req.params.id)
-//         res.status(201).json(user);
-//             console.log(user)
+// Get individual user's recipe by ID
+router.get('/updaterecipe/:id', async (req, res) => {
+    const id = req.params.id
+    console.log(req.params.id)
 
-//     }catch(e) {
-//         res.status(404).json({e : "recipe not found"})
-//         console.log(e)
-//     }
-// })
+    try {
+        const user = await CreateRecipe.findById(id)
+        console.log(user)
+        res.status(201).json(user);
+            console.log(user)
+
+    }catch(e) {
+        res.status(404).json({e : "no recipe found"})
+        console.log(e)
+    }
+})
+
+//Update user's recipe by ID
+
+router.put('/updaterecipe/:id', async(req, res) => {
+
+    const id = req.params.id;
+    const { user_email, recipe_title, recipe_image, recipe_ingridients } = req.body;
+
+    let post;
+    try{
+        post = await CreateRecipe.findByIdAndUpdate( id, {
+
+            user_email, recipe_title, recipe_image, recipe_ingridients
+        })
+    }catch(error){
+        console.log(error)
+    }
+
+    if(!post) {
+        return res.status(500).json({message: "Unable to update"})
+    }else {
+        return res.status(200).json({message: 'Recipe Updated successfully'})
+    }
+})
+
+// Delete recipe by ID
+
+router.delete('/deleterecipe/:id', async(req, res) => {
+    const id = req.params.id;
+
+    let post;
+    try{
+        post = await CreateRecipe.findByIdAndRemove(id);
+
+    }catch(error){
+        console.log(error)
+    }
+
+    if(!post){
+        return res.status(500).json({message: "Unable to delete"})
+    }return res.status(200).json({message:"Recipe deleted successfully"})
+})
 
 
  
