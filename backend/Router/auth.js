@@ -66,7 +66,13 @@ router.post('/login', async (req, res) => {
             const userMail = await UserSignup.findOne({ user_email });
             console.log(userMail)
             
-            if(userMail && (await bcrypt.compare(user_password, userMail.user_password))) {
+            if(userMail && (await bcrypt.compare(req.body.user_password ,userMail.user_password), function(err, res){
+                if(err) {
+                    console.log('Comparison error: ', err)
+                }else {
+                    return res.status(201).json(user)
+                }
+            })) {
                 // Create token  
                 const token = jwt.sign(
                     { _id: userMail._id },
@@ -77,20 +83,13 @@ router.post('/login', async (req, res) => {
                 );
                 // save user token
                 userMail.token = token;
-                
-                // user
-                console.log(userMail)
-                return res.status(201).json({MESSAGE: "Login successfully"});
+            
                 }
 
-                return res.status(400).json({error: "Invalid Password"});
-                console.log("Invalid Password")
-
-
-                // if (!userMail) {
-                //     console.log(userMail);
-                //     return res.status(404).json({err: "user not found"})
-                // } 
+                if (!userMail) {
+                    console.log(userMail);
+                    return res.status(404).json({err: "user not found"})
+                } 
 
     }catch (err){
         console.log(err);

@@ -17,8 +17,8 @@ const handleInput = (e) => {
   setLogin({...login, [name]:value});
 
 }
-const handleClick = async() => {
-  // e.preventDefault();
+const handleClick = async(e) => {
+  e.preventDefault();
   const { user_email, user_password } = login;
   console.log(user_email, user_password);
 

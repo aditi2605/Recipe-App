@@ -1,16 +1,16 @@
 # Recipe-App
 
 ## Project Description:
-RecipeApp is a Search Recipe application that serves as a quick and convenient collection of recipes in your pocket. The user is able to register in the application so that user can search their favorite recipe, Also add their recipes for other users. The main function of the application is the recipe search feature , add recipe feature. 
+Recipe web app lets users create, search, update, and delete recipes with personalized dashboards, user sign up and login. Save unique recipes and store personal ones for others to see. Browse thousands of recipes or create your own. Share favorites with friends and family. Sign up today and start cooking!
 
 
 ## Built with
 - [React](https://react.dev/)
 - [Node JS](https://nodejs.org/en)
 -  [MongoDB](https://www.mongodb.com/atlas/database)
-- [express JS](https://expressjs.com/)
-- [npm](https://www.npmjs.com/)
+- [Express](https://expressjs.com/)
 - [Netlify](https://app.netlify.com/)
+- [Cyclic](https://app.netlify.com/)
 
 ## Getting Started 
 
@@ -20,6 +20,8 @@ RecipeApp is a Search Recipe application that serves as a quick and convenient c
 
 - npm  install
 
-- npm start
+- npm start - [to start frontend ]
+
+
 
 
