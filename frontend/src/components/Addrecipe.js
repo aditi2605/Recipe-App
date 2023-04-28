@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 
@@ -129,9 +128,7 @@ function Addrecipe() {
 
                             <button type="submit" className="addRecipe" onClick={addingRecipe}>Add</button>
                           </div>
-                          <div className="container login">
-                                <p>Don’t have an account? <NavLink to="/login">Log in</NavLink></p>
-                          </div>
+                          
                         </form>     
                       </div>     
                     </div> 
