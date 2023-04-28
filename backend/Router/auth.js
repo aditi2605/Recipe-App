@@ -27,9 +27,12 @@ router.post("/signup", async (req, res) => {
         //     return res.status(400).send("Invalid Credentials");
         // }
 
-        const UserExist = await UserSignup.findOne({ user_name, user_email});
+        const UserExist = await UserSignup.findOne({ user_name: req.body.user_name, user_email: req.body.user_email});
 
-        if(!UserExist) {
+        if(UserExist) {
+            res.status(422).json({message: "user already exist please login"});
+        
+        }else {
             const newUser = new UserSignup({
                 user_name, user_email, user_password, user_ConfirmPassword
             });
@@ -45,11 +48,7 @@ router.post("/signup", async (req, res) => {
                 console.log("Inside else signup block");
                 return res.status(500).json({err: "faild to signup a profile"})    
             }
-           
-        }else {
-            res.status(422).json({message: "user already exist please login"});
         }
-
     }catch (error) {
         console.log(error);
     }    
@@ -60,40 +59,27 @@ router.post("/signup", async (req, res) => {
 //LoginPage Route
 router.post('/login', async (req, res) => {
     try {
-        // Get user input
-        const { user_email, user_password } = req.body;
-            // Validate if user exist in our database
-            const userMail = await UserSignup.findOne({ user_email });
-            console.log(userMail)
-            
-            if(userMail && (await bcrypt.compare(req.body.user_password ,userMail.user_password), function(err, res){
-                if(err) {
-                    console.log('Comparison error: ', err)
-                }else {
-                    return res.status(201).json(user)
+        const user = await UserSignup.findOne({ user_email: req.body.user_email });
+        
+        if(user){
+            const checkPass = await UserSignup.findOne({user_password: req.body.user_password});
+                if(checkPass){
+                    return res.status(200).json(checkPass)
+                    
                 }
-            })) {
-                // Create token  
-                const token = jwt.sign(
-                    { _id: userMail._id },
-                    process.env.TOKEN_KEY,
-                    {
-                    expiresIn: "2h"
-                    }
-                );
-                // save user token
-                userMail.token = token;
-            
-                }
+            return res.status(200).json({message:"login successful"})
+          
+        }else {
+            return res.status(400).json({message:"user does not exist"})
+        }
+        
 
-                if (!userMail) {
-                    console.log(userMail);
-                    return res.status(404).json({err: "user not found"})
-                } 
-
-    }catch (err){
-        console.log(err);
-    }   
+        
+        
+    } catch (error) {
+        console.log(err)
+    }
+    
 });
 
 // GET ALL RECIPES

@@ -62,7 +62,7 @@ function Signup() {
                   <label for="email"><b>Email</b></label>
                   <input type="email"   placeholder="Enter Email" name="user_email" id="email" value={user.user_email} onChange={handleInputs} required />
 
-                  <label for="psw"><b>Password (8 characters minimum)</b></label>
+                  <label for="psw"><b>Password</b></label>
                   <input type="password" placeholder="Enter Password" name="user_password" id="psw"  minlength="8" value={user.user_password }onChange={handleInputs} required />
 
                   <label for="psw-repeat"><b>Confirm Password</b></label>
